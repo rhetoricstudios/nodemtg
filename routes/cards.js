@@ -32,6 +32,7 @@ exports.findAll = function(req, res) {
         collection.findOne({ 'name': 'Elvish Mystic' }, function(err, item) {
             res.send(item);
         });
+        res.send("Nothing to show.");
     });
 };
 
