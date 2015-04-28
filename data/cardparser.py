@@ -29,6 +29,8 @@ for filename in os.listdir(dir_name):
         
     cards_string = json.dumps(data["cards"]);
     
+    cards_string = "[" + cards_string + "]";
+    
     # remove unneccessary array notation if required
     if cards_string.startswith('[') and cards_string.endswith(']'):
         cards_string = cards_string[1:-1];
