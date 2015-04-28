@@ -28,11 +28,14 @@ db.open(function(err, db) {
 });
 
 exports.findAll = function(req, res) {
+	console.log("Finding the one...");
     db.collection(collectionName, function(err, collection) {
         collection.findOne({ 'name': 'Elvish Mystic' }, function(err, item) {
             res.send(item);
+        	console.log("Found him!");
         });
         res.send("Nothing to show.");
+    	console.log("Couldn't find him!");
     });
 };
 
