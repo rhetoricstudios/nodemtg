@@ -1,19 +1,18 @@
-//var http = require('http');
-//http.createServer(function(req,res) {
-//    res.writeHead(200, {'Content-Type': 'text/plain'});
-//    res.end('Hello World\n');
-//}).listen(3000,'127.0.0.1');
-//console.log('server running at http://127.0.0.1:3000/');
-
-
-var express = require('express'),
-cards = require('./routes/cards');
+var express = require('express');
+var cards = require('./routes/cards');
 
 var app = express();
+
+process.on('uncaughtException', function(err) {
+	console.log('Caught exception' + err);
+});
 
 app.get('/cards', cards.findAll);
 //app.get('/cards/:id', cards.findById);
 app.get('/cards/name/:name', cards.findByName);
+app.get('/cards/id/:id', cards.findById);
+
+app.get('/cards/search', cards.findByParams);
 
 app.listen(3000);
 console.log('Listening on port 3000...');
