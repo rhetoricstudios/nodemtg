@@ -7,6 +7,12 @@ process.on('uncaughtException', function(err) {
 	console.log('Caught exception' + err);
 });
 
+app.get('/', function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
+
 app.get('/cards', cards.findAll);
 //app.get('/cards/:id', cards.findById);
 app.get('/cards/name/:name', cards.findByName);
