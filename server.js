@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyparser = require('body-parser');
 var cards = require('./routes/cards');
 var email = require('./routes/email');
 var app = express();
@@ -6,6 +7,10 @@ var app = express();
 process.on('uncaughtException', function(err) {
 	console.log('Caught exception' + err);
 });
+
+app.configure(function() {
+	app.use(bodyparser());
+})
 
 app.get('/', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
