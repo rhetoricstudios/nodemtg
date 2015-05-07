@@ -1,6 +1,6 @@
 var mandrill = require('mandrill')('UXzbTqcBZKlp3-xIsLOH6Q'); 
 
-function sendEmail (_name, _email, _subject, _message) {
+function sendEmail (_name, _email, _subject, _message, res) {
     mandrill('/messages/send', {
         message: {
             to: [{email: _email , name: _name}],
@@ -20,7 +20,7 @@ exports.sendEmailRequest = function (req, res) {
     var emailSubject = req.body.subject;
     var emailBody = req.body.message;
     
-    sendEmail ( emailName, emailAddress, emailSubject, emailBody );
+    sendEmail ( emailName, emailAddress, emailSubject, emailBody, res );
     
     console.log("Sending an email to " + emailAddress);
 };
